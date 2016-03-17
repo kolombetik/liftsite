@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
     url(r'^parts$', views.parts),
+    url(r'^board$', views.board),
+    url(r'^otis$', views.otis),
     url(r'^contacts$', views.contacts),
     url(r'^part/(?P<part_id>[0-9]+)$', views.part_page),
     url(r'^search/', views.search)

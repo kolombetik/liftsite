@@ -11,9 +11,18 @@ def index(request):
 
 def parts(request):
     return render(request, 'parts.html', context=RequestContext(request, {
-        'parts': LiftPart.objects.all()
+        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTPARTS)
     }))
 
+def board(request):
+    return render(request, 'parts.html', context=RequestContext(request, {
+        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTBOARD)
+    }))
+
+def otis(request):
+    return render(request, 'parts.html', context=RequestContext(request, {
+        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTOTIS)
+    }))
 
 def contacts(request):
     return render(request, 'contacts.html')
@@ -30,8 +39,7 @@ def part_page(request, part_id):
 def search(request):
     search_term = request.GET.get('search_term', '')
     lift_parts = LiftPart.objects.filter(
-        Q(vendor_code__icontains=search_term) |
-        Q(name__icontains=search_term) |
+               Q(name__icontains=search_term) |
         Q(description__icontains=search_term) |
         Q(full_description__icontains=search_term)
     )

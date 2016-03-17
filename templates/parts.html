@@ -6,8 +6,7 @@
         <td><a href="/part/{{ part.id }}">{{ part.id }}</a></td>
         <td>{{ part.name }}</td>
         <td>{{ part.description }}</td>
-        <td>{{ part.vendor_code }}</td>
-        <td><a href="/part/{{ part.id }}"><img src="{{ part.image.url }}" height="100"></a></td>
+               <td><a href="/part/{{ part.id }}"><img src="{{ part.image.url }}" height="100"></a></td>
         </tr>
     {% endfor %}
     </table>
