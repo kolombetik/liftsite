@@ -17,13 +17,14 @@ from django.conf import settings
 from django.conf.urls import url, patterns
 from django.contrib import admin
 from lifts import views
+from lifts.models import LiftPart
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
-    url(r'^parts$', views.parts),
-    url(r'^board$', views.board),
-    url(r'^otis$', views.otis),
+    url(r'^parts$', views.parts, kwargs={'kind': LiftPart.LIFTPARTS}),
+    url(r'^board$', views.parts, kwargs={'kind': LiftPart.LIFTBOARD}),
+    url(r'^otis$', views.parts, kwargs={'kind': LiftPart.LIFTOTIS}),
     url(r'^contacts$', views.contacts),
     url(r'^part/(?P<part_id>[0-9]+)$', views.part_page),
     url(r'^search/', views.search)

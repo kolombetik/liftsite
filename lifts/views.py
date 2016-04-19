@@ -1,3 +1,4 @@
+import math
 from django.db.models import Q
 from django.shortcuts import render
 from django.template import RequestContext
@@ -9,19 +10,21 @@ def index(request):
     return render(request, 'main.html')
 
 
-def parts(request):
+def parts(request, kind):
+    page=request.GET.get("page", 1)
+    limit=20
+    offset=int(page)*limit - limit
+    max_offset=offset+limit
+    parts=LiftPart.objects.filter(kind=kind).order_by("name")[offset:max_offset]
+    count=LiftPart.objects.filter(kind=kind).count()
+    total_pages=math.ceil(float(count)/limit)
+    print total_pages
     return render(request, 'parts.html', context=RequestContext(request, {
-        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTPARTS)
-    }))
-
-def board(request):
-    return render(request, 'parts.html', context=RequestContext(request, {
-        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTBOARD)
-    }))
-
-def otis(request):
-    return render(request, 'parts.html', context=RequestContext(request, {
-        'parts': LiftPart.objects.filter(kind=LiftPart.LIFTOTIS)
+        'parts': parts,
+        'total_pages': range(1,int(total_pages)+1),
+        'last_page': int(total_pages),
+        'kind': kind,
+        'current_page': int(page),
     }))
 
 def contacts(request):
