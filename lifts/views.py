@@ -7,7 +7,7 @@ from lifts.models import LiftPart
 
 
 def index(request):
-    return render(request, 'main.html')
+    return render(request, 'main.html', RequestContext(request))
 
 
 def parts(request, kind):
