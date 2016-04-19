@@ -3,12 +3,47 @@
     <table class="table">
     {% for part in parts %}
         <tr>
-        <td><a href="/part/{{ part.id }}">{{ part.id }}</a></td>
-        <td>{{ part.name }}</td>
+               <td>{{ part.name }}</td>
         <td>{{ part.description }}</td>
                <td><a href="/part/{{ part.id }}"><img src="{{ part.image.url }}" height="100"></a></td>
         <td>{{ part.price }}&nbsp;руб.</td>
         </tr>
     {% endfor %}
     </table>
+<nav>
+  <ul class="pagination">
+    <li>
+      {% if kind == 1 %}
+        <li><a href="/parts?page=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+
+      {% elif kind == 2 %}
+        <li><a href="/board?page=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+
+      {% elif kind == 3 %}
+         <li><a href="/otis?page=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+      {% endif %}
+    </li>
+      {% for i in total_pages %}
+          {% if kind == 1 %}
+          <li><a href="/parts?page={{ i }}">{% if current_page == i %} <strong> {% endif %}{{ i }}{% if current_page == i %} </strong> {% endif %}</a></li>
+
+          {% elif kind == 2 %}
+          <li><a href="/board?page={{ i }}">{% if current_page == i %} <strong> {% endif %}{{ i }}{% if current_page == i %} </strong> {% endif %}</a></li>
+
+          {% elif kind == 3 %}
+          <li><a href="/otis?page={{ i }}">{% if current_page == i %} <strong> {% endif %}{{ i }}{% if current_page == i %} </strong> {% endif %}</a></li>
+          {% endif %}
+      {% endfor %}
+    <li>
+      {% if kind == 1 %}
+        <li><a href="/parts?page={{ last_page }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+
+      {% elif kind == 2 %}
+        <li><a href="/board?page={{ last_page }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+
+      {% elif kind == 3 %}
+         <li><a href="/otis?page={{ last_page }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+      {% endif %}
+  </ul>
+</nav>
 {% endblock %}
