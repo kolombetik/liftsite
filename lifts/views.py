@@ -89,7 +89,11 @@ def order(request):
         email = request.POST['email']
         phone = request.POST['phone']
 
-        part_ids = request.session['cart'].keys()
+        part_ids = []
+        for part_id, amount in request.session['cart'].items():
+            if int(amount) > 0:
+                part_ids.append(part_id)
+
         parts = LiftPart.objects.filter(id__in=part_ids)
         for part in parts:
             setattr(part, 'amount', request.session['cart'][str(part.id)])
@@ -104,12 +108,15 @@ def order(request):
             }
         )
 
-        # send_mail(
-        #     subject=u'Новый заказ',
-        #     message=template,
-        #     from_email='noreply@tslplus.ru',
-        #     recipient_list=settings.ORDER_EMAILS,
-        # )
+        send_mail(
+            subject=u'Новый заказ',
+            message=template,
+            from_email='noreply@tslplus.ru',
+            recipient_list=settings.ORDER_EMAILS,
+        )
+
+        request.session.clear()
+
     return render(
         request,
         template_name='order_success.html',

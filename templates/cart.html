@@ -7,7 +7,7 @@
         <td>{{ part.description }}</td>
                <td><a href="/part/{{ part.id }}"><img src="{{ part.image.url }}" width="100"></a></td>
         <td>{{ part.price }}&nbsp;руб.</td>
-        <td>Кол-во: {{ part.amount }}</td>
+        <td>Кол-во: <input type="number" name="part_{{ part.id }}" value="{{ part.amount }}" style="width: 40px;"></td>
         </tr>
     {% endfor %}
     </table>
