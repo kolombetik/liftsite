@@ -117,7 +117,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = 'C:\Users\Kolombet\PycharmProjects\liftsite\media'
+MEDIA_ROOT = 'C:\Users\kololo\PycharmProjects\liftsite\media'
 MEDIA_URL = '/media/'
 
 
