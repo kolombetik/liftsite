@@ -1,3 +1,4 @@
+# coding=utf-8
 import math
 from django.db.models import Q
 from django.shortcuts import render
@@ -10,7 +11,21 @@ def index(request):
     return render(request, 'main.html', RequestContext(request))
 
 
+def add_to_cart (part_id, amount, session):
+    if 'cart' not in session:
+        # инициализация корзины
+        session['cart'] = {}
+    session['cart'][part_id] = amount
+
+
 def parts(request, kind):
+    if request.method == "POST":
+        #basket logic
+        part_id = request.POST["part_id"]
+        amount  = request.POST["amount"]
+        add_to_cart (part_id, amount, request.session)
+
+
     page=request.GET.get("page", 1)
     limit=20
     offset=int(page)*limit - limit
@@ -18,7 +33,6 @@ def parts(request, kind):
     parts=LiftPart.objects.filter(kind=kind).order_by("name")[offset:max_offset]
     count=LiftPart.objects.filter(kind=kind).count()
     total_pages=math.ceil(float(count)/limit)
-    print total_pages
     return render(request, 'parts.html', context=RequestContext(request, {
         'parts': parts,
         'total_pages': range(1,int(total_pages)+1),

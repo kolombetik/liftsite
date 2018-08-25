@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for liftsite project.
 
@@ -125,3 +126,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Корзина хранится в куках!
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
