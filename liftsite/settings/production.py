@@ -136,5 +136,5 @@ SESSION_SAVE_EVERY_REQUEST = True
 ORDER_EMAILS = [
     # 'kolombet@mail.ru',
     'v.kolombet@transistor.ru',
-    #'zakaz@tslplus.ru',
+    'zakaz@tslplus.ru',
 ]
