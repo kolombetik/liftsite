@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% block content %}
+    <table class="table">
+    {% for part in parts %}
+        <tr>
+               <td>{{ part.name }}</td>
+        <td>{{ part.description }}</td>
+               <td><a href="/part/{{ part.id }}"><img src="{{ part.image.url }}" width="100"></a></td>
+        <td>{{ part.price }}&nbsp;руб.</td>
+        <td>Кол-во: {{ part.amount }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+
+    <hr>
+    <div class="col-md-6">
+    <form action="/order/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="order_fio">Как вас зовут:</label>
+            <input type="text" name="fio" required="required" id="order_fio" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <label for="order_email">Электронная почта:</label>
+            <input type="email" name="email" required="required" id="order_email" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <label for="order_phone">Телефон:</label>
+            <input type="text" name="phone" required="required" id="order_phone" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Отправить заявку" class="form-control btn btn-primary">
+        </div>
+
+    </form>
+    </div>
+
+
+{% endblock %}
+

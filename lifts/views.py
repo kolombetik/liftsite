@@ -1,31 +1,48 @@
 # coding=utf-8
 import math
+
+from django.core.mail import send_mail
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import RequestContext
+from django.template.loader import render_to_string
 
 from lifts.models import LiftPart
+
+from django.conf import settings
 
 
 def index(request):
     return render(request, 'main.html', RequestContext(request))
 
 
-def add_to_cart (part_id, amount, session):
-    if 'cart' not in session:
-        # инициализация корзины
-        session['cart'] = {}
-    session['cart'][part_id] = amount
-
-
-def parts(request, kind):
+def add_to_cart(request):
     if request.method == "POST":
         #basket logic
-        part_id = request.POST["part_id"]
-        amount  = request.POST["amount"]
-        add_to_cart (part_id, amount, request.session)
+        part_id = int(request.POST["part_id"])
+        amount  = int(request.POST["amount"])
+        if not request.session.has_key('cart'):
+            # инициализация корзины
+            request.session['cart'] = {}
+        request.session['cart'][part_id] = amount
+
+    return redirect('/cart/')
 
 
+def cart(request):
+    if not request.session.has_key('cart'):
+        request.session['cart'] = {}
+
+    part_ids = request.session['cart'].keys()
+    parts = LiftPart.objects.filter(id__in=part_ids)
+    for part in parts:
+        setattr(part, 'amount', request.session['cart'][str(part.id)])
+
+    return render(request, 'cart.html', context=RequestContext(request, {
+        'parts': parts,
+    }))
+
+def parts(request, kind):
     page=request.GET.get("page", 1)
     limit=20
     offset=int(page)*limit - limit
@@ -64,3 +81,36 @@ def search(request):
     return render(request, 'parts.html', context=RequestContext(request, {
         'parts': lift_parts,
     }))
+
+
+def order(request):
+    if request.method == 'POST':
+        fio = request.POST['fio']
+        email = request.POST['email']
+        phone = request.POST['phone']
+
+        part_ids = request.session['cart'].keys()
+        parts = LiftPart.objects.filter(id__in=part_ids)
+        for part in parts:
+            setattr(part, 'amount', request.session['cart'][str(part.id)])
+
+        template = render_to_string(
+            'order.html',
+            {
+                'fio': fio,
+                'email': email,
+                'phone': phone,
+                'parts': parts,
+            }
+        )
+
+        # send_mail(
+        #     subject=u'Новый заказ',
+        #     message=template,
+        #     from_email='noreply@tslplus.ru',
+        #     recipient_list=settings.ORDER_EMAILS,
+        # )
+    return render(
+        request,
+        template_name='order_success.html',
+    )

@@ -1,0 +1,10 @@
+Новый заказ на сайте tslplus.ru
+
+ФИО: {{ fio }}
+E-mail: {{ email }}
+Phone: {{ phone }}
+
+Заказ:
+{% for item in items %}
+   {{ item.name }} | {{ item.amount }}
+{% endfor %}

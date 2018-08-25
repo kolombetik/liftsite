@@ -27,7 +27,10 @@ urlpatterns = [
     url(r'^otis$', views.parts, kwargs={'kind': LiftPart.LIFTOTIS}),
     url(r'^contacts$', views.contacts),
     url(r'^part/(?P<part_id>[0-9]+)$', views.part_page),
-    url(r'^search/', views.search)
+    url(r'^search/', views.search),
+    url(r'^add-to-cart/', views.add_to_cart),
+    url(r'^cart/', views.cart),
+    url(r'^order/', views.order),
 ]
 
 if settings.DEBUG:

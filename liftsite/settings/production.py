@@ -129,3 +129,10 @@ STATIC_URL = '/static/'
 
 # Корзина хранится в куках!
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+# Сессия сохраняется автоматически в конце каждого запроса
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Электронная почта на которую приходят заказы
+ORDER_EMAILS = [
+    'kolombet@mail.ru',
+]
