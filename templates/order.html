@@ -5,6 +5,6 @@ E-mail: {{ email }}
 Phone: {{ phone }}
 
 Заказ:
-{% for item in items %}
-   {{ item.name }} | {{ item.amount }}
+{% for part in parts %}
+   {{ part.name }} | {{ part.amount }}
 {% endfor %}
