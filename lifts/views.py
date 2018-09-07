@@ -118,7 +118,6 @@ def order(request):
             body=template,
             from_email=email,
             to=settings.ORDER_EMAILS,
-            bcc=['kolombet@mail.ru'],
         )
         mail.attach(attachment.name, attachment.read(), attachment.content_type)
         mail.send()
