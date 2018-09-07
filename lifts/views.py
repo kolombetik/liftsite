@@ -1,6 +1,7 @@
 # coding=utf-8
 import math
 
+from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -89,6 +90,8 @@ def order(request):
         email = request.POST['email']
         phone = request.POST['phone']
         comment = request.POST['comment']
+        attachment = request.FILES.get('attachment')
+
 
         part_ids = []
         for part_id, amount in request.session['cart'].items():
@@ -107,16 +110,13 @@ def order(request):
                 'phone': phone,
                 'comment': comment,
                 'parts': parts,
+                'attachment': attachment,
             }
         )
 
-        send_mail(
-            subject=u'Новый заказ',
-            message=template,
-            from_email='noreply@tslplus.ru',
-            recipient_list=settings.ORDER_EMAILS,
-        )
-
+        mail = EmailMessage(u'Новый заказ', template, [email], settings.ORDER_EMAILS)
+        mail.attach(attachment.name, attachment.read(), attachment.content_type)
+        mail.send()
         request.session.clear()
 
     return render(
