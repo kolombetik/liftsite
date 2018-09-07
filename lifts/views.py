@@ -113,7 +113,12 @@ def order(request):
             }
         )
 
-        mail = EmailMessage(u'Новый заказ', template, [email], settings.ORDER_EMAILS)
+        mail = EmailMessage(
+            subject=u'Новый заказ',
+            body=template,
+            from_email=email,
+            to=settings.ORDER_EMAILS
+        )
         mail.attach(attachment.name, attachment.read(), attachment.content_type)
         mail.send()
         request.session.clear()
