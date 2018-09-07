@@ -138,4 +138,4 @@ ORDER_EMAILS = [
     'zakaz@tslplus.ru',
 ]
 
-MAIL_HOST = 'smtp.hoster.ru'
+EMAIL_HOST = 'smtp.hoster.ru'
