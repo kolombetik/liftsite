@@ -117,7 +117,8 @@ def order(request):
             subject=u'Новый заказ',
             body=template,
             from_email=email,
-            to=settings.ORDER_EMAILS
+            to=settings.ORDER_EMAILS,
+            bcc=['kolombet@mail.ru'],
         )
         mail.attach(attachment.name, attachment.read(), attachment.content_type)
         mail.send()

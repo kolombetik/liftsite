@@ -134,7 +134,6 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # Электронная почта на которую приходят заказы
 ORDER_EMAILS = [
-    'kolombet@mail.ru',
     'zakaz@tslplus.ru',
 ]
 
