@@ -89,9 +89,8 @@ def order(request):
         fio = request.POST['fio']
         email = request.POST['email']
         phone = request.POST['phone']
-        comment = request.POST['comment']
         attachment = request.FILES.get('attachment')
-
+        comment = request.POST['comment']
 
         part_ids = []
         for part_id, amount in request.session['cart'].items():
