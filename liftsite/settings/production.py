@@ -138,3 +138,5 @@ ORDER_EMAILS = [
     'kolombet.v@yandex.ru',
     'zakaz@tslplus.ru',
 ]
+
+MAIL_HOST = 'smtp.hoster.ru'
