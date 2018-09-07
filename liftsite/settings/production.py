@@ -139,3 +139,5 @@ ORDER_EMAILS = [
 ]
 
 EMAIL_HOST = 'smtp.hoster.ru'
+EMAIL_HOST_USER = 'zakaz@tslplus.ru'
+EMAIL_HOST_PASSWORD = 'troiwis2'
