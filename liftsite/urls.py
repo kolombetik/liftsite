@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^add-to-cart/', views.add_to_cart),
     url(r'^cart/', views.cart),
     url(r'^order/', views.order),
+    url(r'^delivery$', views.delivery),
 ]
 
 if settings.DEBUG:

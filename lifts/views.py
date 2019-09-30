@@ -2,7 +2,6 @@
 import math
 
 from django.core.mail import EmailMessage
-from django.core.mail import send_mail
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.template import RequestContext
@@ -59,8 +58,13 @@ def parts(request, kind):
         'current_page': int(page),
     }))
 
+
 def contacts(request):
     return render(request, 'contacts.html')
+
+
+def delivery(request):
+    return render(request, 'delivery.html')
 
 
 def part_page(request, part_id):
