@@ -110,16 +110,23 @@
             }
 
             #cart {
-                position: absolute;
-                top: 50px;
-                left: 1000px;
+                position: relative;
+                top: -380px;
+                left: 700px;
             }
         </style>
         {% block extrahead %} {% endblock %}
     </head>
     <body style="background-image: url('/static/img/bg.png');">
     <div class="container" style="background-color: white;">
-      <img src="/static/img/lift.png" class="img-responsive">
+
+        <img src="/static/img/lift.png" class="img-responsive">
+          <div id="cart">
+        <a href="/cart/">
+            Корзина
+            <img src="{% static 'img/cart.png' %}" width="50px;">
+        </a>
+    </div>
       <a href="/" style="display: inline-block;">
 		<img src="/static/img/logo2.png" style="position: relative; top: -350px; left: 50px;">
 	  </a>
@@ -191,11 +198,6 @@ style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
 
         </script>
 
-    <div id="cart">
-        <a href="/cart/">
-            Корзина
-            <img src="{% static 'img/cart.png' %}" width="50px;">
-        </a>
-    </div>
+
     </body>
 </html>
