@@ -119,73 +119,94 @@
         {% block extrahead %} {% endblock %}
     </head>
     <body style="background-image: url('/static/img/bg.png');">
-    <div class="container" style="background-color: white;">
+        <div class="container" style="background-color: white;">
+            <img src="/static/img/lift.png" class="img-responsive">
+            <div id="cart">
+                <a href="/cart/">
+                    Корзина
+                    <img src="{% static 'img/cart.png' %}" width="50px;">
+                </a>
+            </div>
+            <a href="/" style="display: inline-block;">
+                <img src="/static/img/logo2.png" style="position: relative; top: -350px; left: 50px;">
+            </a>
+            <form class="navbar-form" role="search" style="position: relative; top: -300px; left: 700px;" method="GET" action="/search">
+                <div class="input-group add-on">
+                    <input type="text" class="form-control" placeholder="Поиск" name="search_term" id="srch-term">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <div style="position: relative; top:-525px;left:700px;">
+                <p>
+                    <b style='mso-bidi-font-weight:normal'>
+                        <span style='font-size:10pt;
+color:green'>ООО «ТСЛПЛЮС»<o:p></o:p></span>
+                    </b>
+                </p>
+                <p style='font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;
+text-align:start;widows: 2;-webkit-text-stroke-width: 0px;word-spacing:0px'>
+                    <span style='font-size:10pt;color:black'>Поставка лифтового оборудования и
+                        <span class=GramE>техническое</span>
+                    </span>
+                </p>
 
-        <img src="/static/img/lift.png" class="img-responsive">
-          <div id="cart">
-        <a href="/cart/">
-            Корзина
-            <img src="{% static 'img/cart.png' %}" width="50px;">
-        </a>
-    </div>
-      <a href="/" style="display: inline-block;">
-		<img src="/static/img/logo2.png" style="position: relative; top: -350px; left: 50px;">
-	  </a>
-      <form class="navbar-form" role="search" style="position: relative; top: -300px; left: 700px;" method="GET" action="/search">
-        <div class="input-group add-on">
-          <input type="text" class="form-control" placeholder="Поиск" name="search_term" id="srch-term">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-        </div>
-      </form>
-<div style="position: relative; top:-525px;left:700px;"><p><b style='mso-bidi-font-weight:normal'><span style='font-size:10pt;
-color:green'>ООО «ТСЛПЛЮС»<o:p></o:p></span></b></p>
+                <p>
+                    <span style='font-size:10pt;color:black'>обслуживание лифтов и эскалаторов</span>
+                </p>
 
-<p style='font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;
-text-align:start;widows: 2;-webkit-text-stroke-width: 0px;word-spacing:0px'><span
-style='font-size:10pt;color:black'>Поставка лифтового оборудования и <span
-class=GramE>техническое</span> <o:p></o:p></span></p>
+                <p style='font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;
+                    text-align:start;widows: 2;-webkit-text-stroke-width: 0px;word-spacing:0px'>
+                    <span
+                        style='font-size:10pt;color:black'>Тел.: +7 (499) 703 48 45
+                    </span>
+                </p>
 
-<p><span style='font-size:10pt;color:black'>обслуживание лифтов и эскалаторов<o:p></o:p></span></p>
+                <p>
+                    <span style='font-size:10pt;color:black;mso-ansi-language:EN-US'>
+                        <span style='mso-spacerun:yes'> </span>
+                    </span>
+                    <span class=GramE>
+                      <span
+                        style='font-size:10pt;color:black'>Е
+                      </span>
+                    </span>
+                    <span lang=EN-US
+                        style='font-size:10pt;color:black;mso-ansi-language:EN-US'>-mail:
+                    </span>
+                    <span
+                        lang=EN-US style='font-size:10pt;color:blue;mso-ansi-language:EN-US'>
+                        zip@tslplus.ru
+                    </span>
+                    <span lang=EN-US style='font-size:10pt;color:black;
+                mso-ansi-language:EN-US'></span>
+                </p>
 
-<p style='font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;
-text-align:start;widows: 2;-webkit-text-stroke-width: 0px;word-spacing:0px'><span
-style='font-size:10pt;color:black'>Тел.: +7 (499) 703 48 45<o:p></o:p></span></p>
-
-<p><span style='font-size:10pt;color:black;mso-ansi-language:EN-US'><span
-style='mso-spacerun:yes'> </span></span><span class=GramE><span
-style='font-size:10pt;color:black'>Е</span></span><span lang=EN-US
-style='font-size:10pt;color:black;mso-ansi-language:EN-US'>-mail: </span><span
-lang=EN-US style='font-size:10pt;color:blue;mso-ansi-language:EN-US'>zip@tslplus.ru</span><span lang=EN-US style='font-size:10pt;color:black;
-mso-ansi-language:EN-US'><o:p></o:p></span></p>
-
-<p class=MsoNormal style='text-align:justify'><span lang=EN-US
-style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
-</div>
-      <div class="row marketing">
-        <div class="col-lg-3">
-            <p><img src="/static/img/1{% if request.path == "/" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/" class="menu-link">О компании</a></p>
-            <p><img src="/static/img/2{% if request.path == "/parts" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/parts" class="menu-link">Запчасти<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;КМЗ, ЩЛЗ, МЛЗ, МЭЛ</a></p>
-            <p><img src="/static/img/3{% if request.path == "/board" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/board" class="menu-link">Запчасти IMPORT</a></p>
-            <p><img src="/static/img/4{% if request.path == "/otis" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/otis" class="menu-link">Запчасти OTIS</a></p>
-            <p><img src="/static/img/5{% if request.path == "/contacts" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/contacts" class="menu-link">Контакты</a></p>
-            <p><img src="/static/img/5{% if request.path == "/delivery" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/delivery" class="menu-link">Доставка</a></p>
-{#            <p><img src="/static/img/5.png" class="lift-button">&nbsp;<a href="/blabla" class="menu-link">еще одно меню</a></p>#}
-        </div>
-        <div class="col-lg-8">
-            {% block content %}
-            {% endblock %}
-            </p>
-        </div>
-      </div>
-	  <footer>
-		<p class="text-lead pull-left" style="color: green; margin-left: 20px;">ООО "ТСЛПЛЮС"</p>
-		<p class="pull-right" style="color: green; margin-right: 20px;">+7 (499) 703 48 45 | zip@tslplus.ru</p>
-	  </footer>
-
-    </div> <!-- /container -->
-        <script type="text/javascript">
+                <p class=MsoNormal style='text-align:justify'>
+                  <span lang=EN-US
+                    style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span>
+                </p>
+            </div>
+            <div class="row marketing">
+                <div class="col-lg-3">
+                    <p><img src="/static/img/1{% if request.path == "/" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/" class="menu-link">О компании</a></p>
+                    <p><img src="/static/img/2{% if request.path == "/parts" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/parts" class="menu-link">Запчасти<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;КМЗ, ЩЛЗ, МЛЗ, МЭЛ</a></p>
+                    <p><img src="/static/img/3{% if request.path == "/board" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/board" class="menu-link">Запчасти IMPORT</a></p>
+                    <p><img src="/static/img/4{% if request.path == "/otis" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/otis" class="menu-link">Запчасти OTIS</a></p>
+                    <p><img src="/static/img/5{% if request.path == "/contacts" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/contacts" class="menu-link">Контакты</a></p>
+                    <p><img src="/static/img/5{% if request.path == "/delivery" %}-active{% endif %}.png" class="lift-button">&nbsp;<a href="/delivery" class="menu-link">Доставка</a></p>
+                </div>
+                <div class="col-lg-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <footer>
+                <p class="text-lead pull-left" style="color: green; margin-left: 20px;">ООО "ТСЛПЛЮС"</p>
+                <p class="pull-right" style="color: green; margin-right: 20px;">+7 (499) 703 48 45 | zip@tslplus.ru</p>
+            </footer>
+            <script type="text/javascript">
             $(document).ready(function() {
                 $(".lift-button").hover(function(){
                     $(this).attr("src", function(index, attr){
@@ -199,7 +220,6 @@ style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
             });
 
         </script>
-
-
+        </div>
     </body>
 </html>
